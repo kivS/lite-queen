@@ -17,7 +17,7 @@ const inter = Inter({
 export const metadata = {
 	title: "Lite Queen - Manage SQLite databases on your server with ease",
 	description:
-		"Lite Queen is a SQLite database management software that runs on your server. Simply download the executable, run it, open the url on the browser and you're ready to go!",
+		"Lite Queen is an open-source SQLite database management software that runs on your server.",
 	alternates: {
 		types: {
 			"application/rss+xml": "https://litequeen.com/feed.xml",
