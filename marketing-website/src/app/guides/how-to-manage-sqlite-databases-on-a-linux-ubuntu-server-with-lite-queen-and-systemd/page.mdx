@@ -1,0 +1,113 @@
+export { GuideLayout as default } from "@/app/guides/guide-layout"
+
+export const title = "How to manage SQLite databases on a Linux Ubuntu server with Lite Queen and Systemd"
+
+export const metadata = {
+  title: `${title} | Lite Queen Guides`,
+  description: `Lite Queen Guide About ${title}`
+  
+}
+
+# {title}
+
+This guide will walk you through the steps to run Lite Queen with Linux's Sytemd. Let's start.
+
+1. Let's start by putting a copy of [Lite Queen](https://litequeen.com/) in a folder:
+
+    ```text
+    horse@ubuntu-arm-helsinki:~/test$ tree
+    .
+    └── lite-queen
+
+    0 directories, 1 file
+    ```
+
+
+2. **Creating the Systemd Unit**: Here are the commands we're going to run alongside comments.
+
+    ```bash
+    touch litequeen.service
+
+    # folder that'll hold the data for Lite Queen
+    mkdir data
+
+    # Create a symbolic link for the systemd service file
+    sudo ln -s /home/horse/test/litequeen.service /etc/systemd/system/litequeen.service
+
+
+    # let's add the systemd unit configuration
+    cat <<EOL > litequeen.service
+    [Unit]
+    Description=Lite Queen 
+
+    [Service]
+    Type=simple
+    User=root
+    ExecStart=/home/horse/test/lite-queen --port 8080 --hostname 0.0.0.0 --data_dir /home/horse/test/data
+
+    Restart=on-failure
+    RestartSec=1s
+
+    [Install]
+    WantedBy=multi-user.target
+    EOL
+    ```
+
+3. **Activate and run it**: 
+
+    - First we enable the service:
+    
+      ```bash
+      sudo systemctl enable litequeen.service
+      ```
+
+    - Then we start it:
+
+      ```bash
+      sudo systemctl start litequeen.service
+      ```
+
+    - And last we verify everything is working as it should:
+
+      ```bash
+      sudo systemctl status litequeen.service
+      ```
+
+      ```text
+      horse@ubuntu-arm-helsinki:~/test$ sudo systemctl status litequeen.service
+      ● litequeen.service - Lite Queen
+          Loaded: loaded (/etc/systemd/system/litequeen.service; enabled; vendor preset: enabled)
+          Active: active (running) since Mon 2024-06-24 03:37:30 UTC; 52s ago
+        Main PID: 245180 (lite-queen)
+            Tasks: 6 (limit: 4407)
+          Memory: 1.5M
+              CPU: 6ms
+          CGroup: /system.slice/litequeen.service
+                  └─245180 /home/horse/test/lite-queen --port 8080 --hostname 0.0.0.0 --data_dir /home/horse/test/data
+
+      Jun 24 03:37:30 ubuntu-arm-helsinki systemd[1]: Started Lite Queen.
+      Jun 24 03:37:30 ubuntu-arm-helsinki lite-queen[245180]: 2024/06/24 03:37:30 Lite Queen running on http://0.0.0.0:8080
+      Jun 24 03:37:30 ubuntu-arm-helsinki lite-queen[245180]: 2024/06/24 03:37:30 App is not registered. Running with limited functionality...
+      ```
+
+4. **Expose and secure it**:  To make it accessible to the internet via a domain, with some added security, let's set up [Caddy](https://caddyserver.com/)(you're  free to use any another webserver/reverse proxy like Nginx, etc).
+
+    ```text
+    litequeen.example.com {
+
+        @blocked {
+            not remote_ip xx.xx.xx.xx # Whitelisted IP Address, replace with your own
+            not remote_ip yy.yy.yy.yy # We can add multiple IP adresses too
+        }
+        respond @blocked "Not allowed" 403
+
+        basicauth * { 
+            # Password hashed with Caddy's hash-password command
+            testing $2a$14$0EaqE/lqNro14adPf/c2COOdqfXukT5hXIS9.ZwRj0FMBQcWTYxR.
+        }
+
+        reverse_proxy :8080
+    }
+    ```
+
+ And there you have it! Lite Queen should now be secured with basic authentication and accessible to only users with a certain IP address at `https://litequeen.example.com`. Happy hosting!

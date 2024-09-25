@@ -1,0 +1,9 @@
+services:
+  lite-queen:
+    image: kivsegrob/lite-queen
+    platform: linux/arm64
+    volumes:
+      # location of your sqlite databses
+      - '/home/horse/www:/srv'
+      # where Lite Queen should store its data 
+      - '/home/horse/litequeen-data:/home/litequeen/data'

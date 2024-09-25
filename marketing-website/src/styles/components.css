@@ -1,0 +1,10 @@
+@import './typography.css';
+@tailwind components;
+
+@layer components {
+    .text-landing-accent-light {
+        @apply text-sky-500
+    }
+
+
+}

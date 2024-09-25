@@ -1,0 +1,60 @@
+export { GuideLayout as default } from "@/app/guides/guide-layout"
+
+export const title = "How to manage SQLite databases on a Linux Ubuntu server with Lite Queen and Docker"
+
+export const metadata = {
+  title: `${title} | Lite Queen Guides`,
+  description: `Lite Queen Guide About ${title}`
+}
+
+# {title}
+
+
+Ready to get Lite Queen up and running on your Ubuntu server using Docker? You're in the right place! Docker is the esiest way to run and manage Lite Queen. This guide will walk you through the steps to do just that, keeping things simple and straightforward.
+
+
+
+1. **Install dependencies:** the only thing you need to get started is [Docker](https://docs.docker.com/engine/install/ubuntu/#installation-methods).
+
+
+2. **Run Lite Queen:** let's get Lite Queen running:
+
+    ```bash
+    docker run -d --restart unless-stopped -p 8080:8000 -v /var/www:/srv -v $(pwd)/litequeen-data:/home/litequeen/data --name lite-queen-container kivsegrob/lite-queen
+    ``` 
+
+    Breakdown of some important flags:
+
+    - The `-v /var/www:/srv` flag, mounts the location of all our SQLite databases in the container(`/srv`). This way we can access a database like so: `/srv/path-to_database`. Change `/srv/www` with the location of the database files on your system.
+
+    - `-v $(pwd)/litequeen-data:/home/litequeen/data` mounts a folder on our system to enable Lite Queen to persist its data. Change `(pwd)/litequeen-data` with the folder location you want Lite Queen to keep its data. 
+
+    - The `-d` flag makes Lite Queen run in the background.
+
+    - `--restart unless-stopped` allows Lite Queen to restart automatically in case of error or when your server restarts.
+
+    - `-p 8080:8000` maps the port running on your system(`8080`) to the container running Lite Queen--runs on port `8000` internally.
+
+5. **Exposing and securing Lite Queen:** Lite Queen should be running on `http://localhost:8080` now. To make it accessible to the internet via a domain, with some added security, let's set up [Caddy](https://caddyserver.com/)(you're  free to use any another webserver like Nginx, etc):
+
+    ```text
+    litequeen.example.com {
+
+        @blocked {
+            not remote_ip xx.xx.xx.xx # Whitelisted IP Address, replace with your own
+            not remote_ip yy.yy.yy.yy # We can add multiple IP adresses too
+        }
+        respond @blocked "Not allowed" 403
+
+        basicauth * { 
+            # Password hashed with Caddy's hash-password command
+            testing $2a$14$0EaqE/lqNro14adPf/c2COOdqfXukT5hXIS9.ZwRj0FMBQcWTYxR.
+        }
+
+        reverse_proxy :8080
+    }
+    ```
+
+    Now, Lite Queen is not only up and running, but also secured with basic authentication and accessible to only users with a certain IP address at `https://litequeen.example.com`.
+    And there you have it! Happy hosting!
+

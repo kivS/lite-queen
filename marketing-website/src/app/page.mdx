@@ -1,0 +1,165 @@
+import { SparkleIcon } from '@/components/SparkleIcon'
+import { WrenchIcon } from '@/components/WrenchIcon'
+
+export { Layout as default } from '@/components/Layout'
+
+---
+
+## Refreshed search experience, better errors and simpler setup {{ date: '2024-08-13T01:25:21Z' }}
+
+![](@/images/new-search-exp.webp)
+
+### <SparkleIcon /> Improvements
+
+- Setup is now simpler on the servers&#8212;We have some guides how to setup with [Systemd](/guides/how-to-manage-sqlite-databases-on-a-linux-ubuntu-server-with-lite-queen-and-systemd/), [Docker](/guides/how-to-manage-sqlite-databases-on-a-linux-ubuntu-server-with-lite-queen-and-docker/) and on [Coolify with Docker Compose](/guides/how-to-manage-sqlite-databases-on-a-linux-server-with-coolify-and-lite-queen/).
+
+- Revamped search experience.
+
+- We now have a side window pane with schema and index information of a table.
+
+- Refreshed homescreen.
+
+- You can now open the record row directly when viewing a linked record inside a foreign data hover card.
+
+- You now get more useful sql errors when doing any database operation.
+
+### Others
+
+- God mode is now renamed to Go
+
+---
+
+## Table column information {{ date: '2024-07-04T03:53:23Z' }}
+
+![](@/images/screenshot-foreign-key.webp)
+
+- Added  popover with information about the column definition and foreign key. 
+
+---
+
+
+## Simple search and data entry improvements  {{ date: '2024-05-14T15:38:52Z' }}
+
+### <SparkleIcon /> Improvements
+
+- Added a simple search. You can also access it opening God Mode or by pressing "s" when in table records page.
+
+- When editing a field with large contents, you can now use an adjustable text dialog for more space.
+
+- Added shortcut("n") to quickly open the window to add a new record.
+
+### <WrenchIcon /> Fixes
+
+- Fixed issue with updating database records where field names contain whitescapes
+
+
+---
+
+
+## Improved relationship viewer & mobile screens {{ date: '2024-04-19T09:09:30Z' }}
+
+### <SparkleIcon /> Improvements
+
+- Table relationships viewer will now group the tables that are related close together.
+- Improve fidelity of the UI in different screen types like phones and tablets .
+- Use a more user-friendly count of table rows. eg: instead of "156432 rows" we now display "16k rows"(on hover you can still see the absolute count).
+
+---
+
+## Go anywhere and database connection settings {{ date: '2024-03-26T04:40:19Z' }}
+
+
+### <SparkleIcon /> Improvements
+
+- You can navigate anywhere using a command menu when in god mode <kbd>Cmd</kbd> + <kbd>K</kbd> 
+Quickly navigate to tables in your current database, other databases and more.
+
+- Added quick menu for updating the connection settings of a database.
+
+- When seeing the table records, the foreign key record popover triggers on click/touch instead of hover.
+
+
+### <WrenchIcon /> Fixes
+
+- fixed issue with relative time ago datetime string not assuming UTC inside of the hovercard.
+
+---
+
+## Table relationship visualizer, selection for foreign key items, date utility & settings   {{ date: '2024-02-26T09:03:31Z' }}
+
+
+### <SparkleIcon /> Improvements
+- You can now visualize the relationships between the tables in your database;
+- You can now have a select for foreign key fields with their corresponding data when adding or editing a record;
+- You now have a button to quickly give your the formatted UTC date on datetime fields;
+- Added settings page for OpenAI api keys and application label.
+
+<blockquote className="twitter-tweet" data-media-max-width="560">&mdash; Vik 💿 (@kivSegrob) <a href="https://twitter.com/kivSegrob/status/1762040160534008057?ref_src=twsrc%5Etfw">February 26, 2024</a></blockquote>
+
+---
+
+## God Mode {{ date: '2024-01-26T11:21:32Z' }}
+
+
+We now have a God Mode(<kbd>Cmd</kbd> + <kbd>K</kbd>)!
+You can query your Sqlite databases with SQL and chat 
+with it using plain English. It knows your database schema, indexes, triggers and other metadata in order to give you the most accurate
+and relevant answers. 
+
+It uses OpenAI ChatGPT so you can just bring your own API Key to get started&mdash;your API key and other info won't leave your computer/server as it's saved locally.
+
+<blockquote className="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">In the latest version of  <a href="https://t.co/UELg0xZThJ">pic.twitter.com/UELg0xZThJ</a></p>&mdash; Vik 💿 (@kivSegrob) <a href="https://twitter.com/kivSegrob/status/1750840782641332498?ref_src=twsrc%5Etfw">January 26, 2024</a></blockquote>
+
+---
+
+## Auto table ordering, manual app reload & feedback {{ date: '2024-01-10T05:20:39Z' }}
+
+### <SparkleIcon /> Improvements
+- **Lite-queen** will now infer which table field is likely to be the datetime and sort the table in descending order;
+- Added a footer menu with a way to navigate to the main screen, a way to send feedback by email and a way to hard refresh the app in case of issues.
+- Improved caching on the demo instance. It's faster now.
+
+---
+
+
+![](@/images/screenshot-2024-01-02-at-19.20.05.jpeg)
+
+## Demo mode, relative time in date fields & sticky headers {{ date: '2024-01-02T11:11:11Z' }}
+
+### <SparkleIcon /> Improvements
+- Added a hosted [demo](https://demo.litequeen.com/) version of **lite-queen**.
+- Table field names are now sticky so context is not lost when scrolling large tables
+- Added relative time difference on date-time fields. On hover they show up in a tooltip
+
+---
+
+## Sql query mode with json results {{ date: '2023-12-24T06:32:28Z' }}
+
+We can now execute sql code by hitting <kbd>Cmd</kbd> + <kbd>K</kbd> or clicking the button on the upper right corner.
+The query results are returned in Json.
+
+
+<blockquote className="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">Sql mode that returns results in json <a href="https://t.co/fJLdHOFZXL">pic.twitter.com/fJLdHOFZXL</a></p>&mdash; Vik 💿 (@kivSegrob) <a href="https://twitter.com/kivSegrob/status/1738809422397546783?ref_src=twsrc%5Etfw">December 24, 2023</a></blockquote> 
+
+---
+
+## Load record from foreign key  {{  date: '2023-12-23T14:38:46Z' }}
+
+Now when you hover a foreign key it loads the record in a popover as json
+
+
+<blockquote className="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr"><a href="https://t.co/y0VQ6jjqOG">pic.twitter.com/y0VQ6jjqOG</a></p>&mdash; Vik 💿 (@kivSegrob) <a href="https://twitter.com/kivSegrob/status/1738568902937035086?ref_src=twsrc%5Etfw">December 23, 2023</a></blockquote>
+
+
+
+
+---
+
+
+
+## Lift off! {{  date: '2023-09-28T00:00Z' }}
+🐣
+
+<blockquote className="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr"><a href="https://t.co/bBMIWlco5s">pic.twitter.com/bBMIWlco5s</a></p>&mdash; Vik 💿 (@kivSegrob) <a href="https://twitter.com/kivSegrob/status/1738579695845978216?ref_src=twsrc%5Etfw">December 23, 2023</a></blockquote> 
+
+
