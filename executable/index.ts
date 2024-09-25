@@ -7,9 +7,6 @@ const IS_DEV_MODE = process.env.IS_DEV === "true";
 
 let shortTermMemory = {
 	databases: {},
-	license_key: {
-		is_app_registed: false,
-	},
 	latest_build_update_datetime: "",
 };
 
