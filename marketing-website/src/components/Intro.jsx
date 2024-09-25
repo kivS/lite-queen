@@ -30,7 +30,7 @@ export function Intro() {
 					target="_blank"
 					rel="noreferrer"
 					href="https://github.com/kivS/lite-queen"
-					className="flex mt-4 items-center gap-1 border p-1 justify-center w-2/4 mx-auto hover:scale-105 hover:text-landing-accent-light  dark:border-white  rounded-lg font-medium "
+					className="flex mt-4 items-center gap-1  p-1 justify-center w-2/4 mx-auto hover:scale-105 hover:text-landing-accent-light  dark:border-white  rounded-lg font-medium "
 				>
 					<GitHubIcon className="size-4" />
 					<span className="text-sm">kivS/lite-queen</span>
