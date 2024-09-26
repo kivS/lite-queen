@@ -2,6 +2,17 @@
 
 *Manage SQLite databases on your server with ease.*
 
+- [Demo](https://demo.litequeen.com/)
+
+## How to install
+
+There's different ways to use Lite Queen on your server:
+
+- [With Docker](https://litequeen.com/guides/how-to-manage-sqlite-databases-on-a-linux-ubuntu-server-with-lite-queen-and-docker/)
+
+- You can install the executable and run it with something like [Systemd](https://litequeen.com/guides/how-to-manage-sqlite-databases-on-a-linux-ubuntu-server-with-lite-queen-and-systemd/)
+
+- [With Coolify and Docker-Compose](https://litequeen.com/guides/how-to-manage-sqlite-databases-on-a-linux-server-with-coolify-and-lite-queen/)
 
 ## Structure
 
