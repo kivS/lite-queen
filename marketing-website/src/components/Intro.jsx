@@ -23,19 +23,45 @@ export function Intro() {
 				<span className="text-landing-accent-light">ease</span>
 			</h1>
 
-			<p className="mt-8 font-medium text-lg/6 dark:text-gray-300 text-pretty text-center">
+			<div className="mt-8 font-medium text-lg/6 dark:text-gray-300 text-pretty text-center">
 				Lite Queen is an open-source SQLite database management software that
 				runs on your server.
-				<a
-					target="_blank"
-					rel="noreferrer"
-					href="https://github.com/kivS/lite-queen"
-					className="flex mt-4 items-center gap-1  p-1 justify-center w-2/4 mx-auto hover:scale-105 hover:text-landing-accent-light  dark:border-white  rounded-lg font-medium "
-				>
-					<GitHubIcon className="size-4" />
-					<span className="text-sm">kivS/lite-queen</span>
-				</a>
-			</p>
+				<div className="flex ">
+					<a
+						target="_blank"
+						rel="noreferrer"
+						href="https://github.com/kivS/lite-queen"
+						className="flex mt-4 items-center gap-1  p-1 justify-center w-2/4 mx-auto hover:scale-105 hover:text-landing-accent-light  dark:border-white  rounded-lg font-medium "
+					>
+						<GitHubIcon className="size-4" />
+						<span className="text-sm">kivS/lite-queen</span>
+					</a>
+					<a
+						target="_blank"
+						rel="noreferrer"
+						href="https://github.com/sponsors/kivS"
+						className="flex mt-4 items-center gap-1 hover:text-red-400 p-1 justify-center w-2/4 mx-auto hover:scale-105 hover:text-landing-accent-light   rounded-lg font-medium "
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width={24}
+							height={24}
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth={2}
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							className="size-4"
+						>
+							<title>Sponsor the project</title>
+							<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+						</svg>
+
+						<span className="text-sm">Sponsor</span>
+					</a>
+				</div>
+			</div>
 
 			{/* <SignUpForm /> */}
 
