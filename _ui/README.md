@@ -1,3 +1,2 @@
-# UI 
+# UI for Lite Queen
 
-UI for Lite Queen!!
