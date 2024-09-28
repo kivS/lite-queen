@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Seeding the dummy databases"
 
 declare -a dbs=(
