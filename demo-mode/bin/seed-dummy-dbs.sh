@@ -16,6 +16,6 @@ for db_entry in "${dbs[@]}"; do
     --header 'Accept: */*' \
     --header 'Accept-Encoding: gzip, deflate' \
     --header 'Connection: keep-alive' \
-    --data-urlencode 'db_path=$db_path' \
-    --data-urlencode 'db_alias=$db_alias'
+    --data-urlencode "db_path=$db_path" \
+    --data-urlencode "db_alias=$db_alias"
 done
