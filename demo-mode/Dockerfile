@@ -12,8 +12,11 @@ COPY --from=executables /home/litequeen/lite-queen-arm64 ./lite-queen
 # Copy the pre-built executable into the container
 # COPY ./lite-queen /app/lite-queen
 
-# If your application needs additional runtime libraries, install them
-# RUN apk add --no-cache <dependencies>
+# let's get curl
+RUN apt-get update -y 
+RUN apt-get install curl -y 
+
+COPY ./bin /app/bin
 
 # Copy the SQLite database files
 RUN mkdir -p /app/databases

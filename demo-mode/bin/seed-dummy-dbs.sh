@@ -9,11 +9,11 @@ declare -a dbs=(
 )
 for db_entry in "${dbs[@]}"; do
     IFS=' ' read -r db_alias db_path <<< "$db_entry"
-    ssh $myvps_host -p 54321 "curl --location --request POST 'http://localhost:8000/api/load-database' \
+    curl --location --request POST 'http://localhost:8000/api/load-database' \
     --header 'Cache-Control: no-cache' \
     --header 'Accept: */*' \
     --header 'Accept-Encoding: gzip, deflate' \
     --header 'Connection: keep-alive' \
     --data-urlencode 'db_path=$db_path' \
-    --data-urlencode 'db_alias=$db_alias'"
+    --data-urlencode 'db_alias=$db_alias'
 done
