@@ -1,11 +1,16 @@
-# Start from a base image, e.g., a lightweight Linux distribution
-FROM debian:12-slim
+FROM kivsegrob/lite-queen:latest AS executables
+
+
+
+FROM debian:12-slim AS demo
 
 # Set the working directory in the container
 WORKDIR /app
 
+COPY --from=executables /home/litequeen/lite-queen-arm64 ./lite-queen
+
 # Copy the pre-built executable into the container
-COPY ./lite-queen /app/lite-queen
+# COPY ./lite-queen /app/lite-queen
 
 # If your application needs additional runtime libraries, install them
 # RUN apk add --no-cache <dependencies>
