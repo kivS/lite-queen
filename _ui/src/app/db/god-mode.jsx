@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import {
 	Dialog,
@@ -18,6 +18,7 @@ import {
 	CheckCircle2,
 	ChevronRightIcon,
 	CommandIcon,
+	DatabaseBackupIcon,
 	DatabaseIcon,
 	FanIcon,
 	HardDriveIcon,
@@ -27,6 +28,7 @@ import {
 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import {
+	backupDatabase,
 	executeRawSqlQuery,
 	getDatabaseInfo,
 	getTableColumns,
@@ -67,6 +69,7 @@ export default function GodMode() {
 		ai: <AiModeScreen />,
 		go_anywhere: <GoAnyWhereScreen />,
 		search: <SearchScreen />,
+		backup: <BackupScreen />,
 	};
 
 	React.useEffect(() => {
@@ -129,6 +132,34 @@ export default function GodMode() {
 			</DialogContent>
 		</Dialog>
 	);
+
+	function BackupScreen() {
+		const [isPending, startTransition] = useTransition();
+		const searchParams = useSearchParams();
+
+		return (
+			<>
+				<h1>hello</h1>
+
+				<button
+					type="button"
+					onClick={() => {
+						const db_id = searchParams.get("db_id");
+
+						const formData = new FormData();
+						formData.append("db_id", db_id);
+
+						startTransition(async () => {
+							const result = await backupDatabase(formData);
+							console.log({ result });
+						});
+					}}
+				>
+					{isPending ? "Backing up..." : "Backup"}
+				</button>
+			</>
+		);
+	}
 
 	function SearchScreen() {
 		const searchParams = useSearchParams();
@@ -279,6 +310,8 @@ export default function GodMode() {
 						</CommandItem>
 					</CommandGroup>
 
+					<CommandSeparator />
+
 					<CommandGroup heading="Tables">
 						{db_info?.tables?.sort().map((table) => (
 							<CommandItem
@@ -312,11 +345,18 @@ export default function GodMode() {
 								))}
 					</CommandGroup>
 
-					{/* <CommandGroup heading="Settings">
-                        <CommandItem>Profile</CommandItem>
-                        <CommandItem>Billing</CommandItem>
-                        <CommandItem>Settings</CommandItem>
-                    </CommandGroup> */}
+					<CommandSeparator />
+
+					<CommandGroup heading="Other">
+						{searchParams.has("db_id") && (
+							<CommandItem onSelect={() => setGodModeCurrentScreen("backup")}>
+								<div className="flex gap-1 content-center items-center">
+									<DatabaseBackupIcon width={14} height={14} />
+									Database Backups
+								</div>
+							</CommandItem>
+						)}
+					</CommandGroup>
 				</CommandList>
 			</Command>
 		);

@@ -30,6 +30,15 @@ export function getTableInfo(db_id, table_name) {
 	return useSWR(url, fetcher);
 }
 
+export async function backupDatabase(formData) {
+	const request = await fetch(`${ROOT_URL}/api/backup-database`, {
+		method: "POST",
+		body: formData,
+	});
+
+	return request.json();
+}
+
 export function getTableRows(db_id, table_name, search, search_by, limit = 50) {
 	const getKey = (pageIndex, previousPageData) => {
 		if (previousPageData && !previousPageData.rows?.length) return null;

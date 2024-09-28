@@ -407,6 +407,26 @@ const server = Bun.serve({
 			);
 		}
 
+		if (req.method === "POST" && url.pathname === "/api/backup-database") {
+			const formData = await req.formData();
+
+			const db_id = formData.get("db_id");
+
+			console.log(db_id);
+
+			// TODO: let's make sure sqlite3 is present
+			// TODO: let's start the backup process(we can do it naively for now. improve later)
+			// TODO: lets save it under the data folder of litequeen(inside backups)
+
+			return Response.json(
+				{
+					ok: true,
+				},
+				{ headers: { ...defaultHeaders } },
+			);
+		}
+		// =========================
+
 		if (req.method === "GET" && url.pathname === "/api/get-table-info") {
 			// console.debug(Object.fromEntries(url.searchParams.entries()));
 
