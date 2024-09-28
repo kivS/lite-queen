@@ -151,7 +151,7 @@ export default function GodMode() {
 
 						startTransition(async () => {
 							const result = await backupDatabase(formData);
-							console.log({ result });
+							console.log(result);
 						});
 					}}
 				>

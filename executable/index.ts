@@ -2,16 +2,34 @@ import { Database } from "bun:sqlite";
 import staticFiles from "./static-ui-bundle.js";
 import { parseArgs } from "node:util";
 import { randomUUID } from "node:crypto";
+import { $ } from "bun";
+import { mkdir } from "node:fs/promises";
 
 const IS_DEV_MODE = process.env.IS_DEV === "true";
 
-let shortTermMemory = {
+type ShortTermMemoryDatabase = {
+	db_id: string;
+	db_alias: string;
+	db_filename: string;
+	db_path: string;
+	db_size_in_bytes: number;
+	db_last_modified: number;
+	backups: { timestamp: string; file: string }[];
+};
+
+type ShortTermMemory = {
+	databases: Record<string, ShortTermMemoryDatabase>;
+	latest_build_update_datetime: string;
+};
+
+let shortTermMemory: ShortTermMemory = {
 	databases: {},
 	latest_build_update_datetime: "",
 };
 
 const default_folder_location = "lite-queen-data";
 const LongTermMemoryFileName = "lite-queen_long_term_memory.json";
+const backup_folder_location = `${default_folder_location}/backups`;
 
 const { values: flags, positionals } = parseArgs({
 	args: Bun.argv,
@@ -412,11 +430,64 @@ const server = Bun.serve({
 
 			const db_id = formData.get("db_id");
 
-			console.log(db_id);
+			if (!db_id || !shortTermMemory.databases[db_id.toString()]) {
+				return Response.json(
+					{
+						ok: false,
+						message: "Database not found",
+					},
+					{ status: 400, headers: { ...defaultHeaders } },
+				);
+			}
 
-			// TODO: let's make sure sqlite3 is present
-			// TODO: let's start the backup process(we can do it naively for now. improve later)
-			// TODO: lets save it under the data folder of litequeen(inside backups)
+			const shortTermMemoryDatabase =
+				shortTermMemory.databases[db_id.toString()];
+
+			console.debug({ shortTermMemoryDatabase });
+
+			try {
+				const output = await $`sqlite3 --version`.text();
+			} catch (error) {
+				return Response.json(
+					{
+						ok: false,
+						message: "sqlite3 is not present. Install it first.",
+					},
+					{ status: 400, headers: { ...defaultHeaders } },
+				);
+			}
+
+			const backup_location = `${flags.data_dir === "" ? backup_folder_location : flags.data_dir}/${shortTermMemoryDatabase.db_id.toString()}`;
+			const backup_file = `${backup_location}/${Date.now()}_backup.db`;
+
+			try {
+				await mkdir(backup_location, {
+					recursive: true,
+				});
+
+				const result =
+					await $`sqlite3 ${shortTermMemoryDatabase.db_path}  ".backup ${backup_file}`;
+			} catch (error) {
+				console.error(error);
+				return Response.json(
+					{
+						ok: false,
+						message: "Failed to create backup",
+					},
+					{ status: 400, headers: { ...defaultHeaders } },
+				);
+			}
+
+			if (!shortTermMemory.databases[db_id.toString()].backups) {
+				shortTermMemory.databases[db_id.toString()].backups = [];
+			}
+
+			shortTermMemory.databases[db_id.toString()].backups.push({
+				timestamp: new Date().toISOString(),
+				file: backup_file,
+			});
+
+			console.log(shortTermMemory);
 
 			return Response.json(
 				{
