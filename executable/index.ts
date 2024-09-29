@@ -500,6 +500,28 @@ const server = Bun.serve({
 				{ headers: { ...defaultHeaders } },
 			);
 		}
+
+		if (req.method === "GET" && url.pathname === "/api/database-backups") {
+			const db_id = url.searchParams.get("db_id") || "";
+
+			if (!shortTermMemory.databases[db_id]) {
+				return Response.json(
+					{ ok: false, message: "Database not found in memory" },
+					{ status: 404, headers: { ...defaultHeaders } },
+				);
+			}
+
+			const backups = shortTermMemory.databases[db_id].backups || [];
+
+			return Response.json(
+				{
+					ok: true,
+					backups,
+				},
+				{ headers: { ...defaultHeaders } },
+			);
+		}
+
 		// =========================
 
 		if (req.method === "GET" && url.pathname === "/api/get-table-info") {

@@ -30,6 +30,7 @@ import { Textarea } from "@/components/ui/textarea";
 import {
 	backupDatabase,
 	executeRawSqlQuery,
+	getDatabaseBackups,
 	getDatabaseInfo,
 	getTableColumns,
 	makeChatGptRequest,
@@ -136,22 +137,58 @@ export default function GodMode() {
 	function BackupScreen() {
 		const [isPending, startTransition] = useTransition();
 		const searchParams = useSearchParams();
+		const db_id = searchParams.get("db_id");
+
+		const { data, isLoading: backupsAreLoading } = getDatabaseBackups(db_id);
+
+		console.log(data);
 
 		return (
 			<>
 				<h1>hello</h1>
 
+				{backupsAreLoading ? (
+					<p>Loading backups...</p>
+				) : (
+					<table className="min-w-full border-collapse border border-gray-200">
+						<thead>
+							<tr>
+								<th className="border border-gray-300 p-2">Timestamp</th>
+								<th className="border border-gray-300 p-2">Backup File</th>
+							</tr>
+						</thead>
+						<tbody>
+							{data?.backups?.map((backup) => (
+								<tr key={backup.timestamp}>
+									<td className="border border-gray-300 p-2">
+										{new Date(backup.timestamp).toLocaleString()}
+									</td>
+									<td className="border border-gray-300 p-2">{backup.file}</td>
+								</tr>
+							)) || (
+								<tr>
+									<td
+										colSpan={2}
+										className="border border-gray-300 p-2 text-center"
+									>
+										No backups found.
+									</td>
+								</tr>
+							)}
+						</tbody>
+					</table>
+				)}
+
 				<button
 					type="button"
 					onClick={() => {
-						const db_id = searchParams.get("db_id");
-
 						const formData = new FormData();
 						formData.append("db_id", db_id);
 
 						startTransition(async () => {
 							const result = await backupDatabase(formData);
 							console.log(result);
+							mutate(`${ROOT_URL}/api/database-backups?db_id=${db_id}`);
 						});
 					}}
 				>

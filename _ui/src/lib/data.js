@@ -39,6 +39,11 @@ export async function backupDatabase(formData) {
 	return request.json();
 }
 
+export function getDatabaseBackups(db_id) {
+	const url = db_id ? `${ROOT_URL}/api/database-backups?db_id=${db_id}` : null;
+	return useSWR(url, fetcher);
+}
+
 export function getTableRows(db_id, table_name, search, search_by, limit = 50) {
 	const getKey = (pageIndex, previousPageData) => {
 		if (previousPageData && !previousPageData.rows?.length) return null;
