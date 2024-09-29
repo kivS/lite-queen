@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import {
 	Dialog,
@@ -18,16 +18,23 @@ import {
 	CheckCircle2,
 	ChevronRightIcon,
 	CommandIcon,
+	DatabaseBackupIcon,
 	DatabaseIcon,
 	FanIcon,
+	FilePlus2Icon,
+	FilePlusIcon,
 	HardDriveIcon,
 	IceCream,
+	LoaderIcon,
+	PlusIcon,
 	SearchIcon,
 	StarsIcon,
 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import {
+	backupDatabase,
 	executeRawSqlQuery,
+	getDatabaseBackups,
 	getDatabaseInfo,
 	getTableColumns,
 	makeChatGptRequest,
@@ -67,6 +74,7 @@ export default function GodMode() {
 		ai: <AiModeScreen />,
 		go_anywhere: <GoAnyWhereScreen />,
 		search: <SearchScreen />,
+		backup: <BackupScreen />,
 	};
 
 	React.useEffect(() => {
@@ -129,6 +137,89 @@ export default function GodMode() {
 			</DialogContent>
 		</Dialog>
 	);
+
+	function BackupScreen() {
+		const [isPending, startTransition] = useTransition();
+		const searchParams = useSearchParams();
+		const db_id = searchParams.get("db_id");
+
+		const { data: database } = getDatabaseInfo(db_id);
+
+		const { data, isLoading: backupsAreLoading } = getDatabaseBackups(db_id);
+
+		return (
+			<>
+				<header>
+					<h1 className="text-2xl text-center font-semibold">Manage Backups</h1>
+					<p className="truncate text-center text-sm text-muted-foreground py-1">
+						for <strong>{database?.db_alias} </strong>
+					</p>
+				</header>
+
+				<Button
+					type="button"
+					size="sm"
+					variant="link"
+					disabled={isPending}
+					className="w-40 justify-start p-0"
+					onClick={() => {
+						const formData = new FormData();
+						formData.append("db_id", db_id);
+
+						startTransition(async () => {
+							const result = await backupDatabase(formData);
+							mutate(`${ROOT_URL}/api/database-backups?db_id=${db_id}`);
+						});
+					}}
+				>
+					{isPending ? (
+						<>
+							Creating <LoaderIcon className="ml-1 size-4 animate-spin" />{" "}
+						</>
+					) : (
+						<>
+							<PlusIcon className="size-4 mr-1" /> Create
+						</>
+					)}
+				</Button>
+
+				{backupsAreLoading ? (
+					<p>Loading backups...</p>
+				) : (
+					<table className="min-w-full border-collapse border border-gray-200">
+						<thead>
+							<tr className="text-sm">
+								<th className="border border-gray-300 p-2">Created at</th>
+								<th className="border border-gray-300 p-2">Backup File</th>
+							</tr>
+						</thead>
+						<tbody className="">
+							{data?.backups?.map((backup) => (
+								<tr key={backup.timestamp}>
+									<td className="border border-gray-300 p-2 text-xs text-center">
+										{new Date(backup.timestamp).toLocaleString()}
+									</td>
+									<td className="border border-gray-300 p-2 text-xs text-center">
+										{backup.file_name}
+									</td>
+								</tr>
+							))}
+							{data?.backups && data.backups.length === 0 ? (
+								<tr>
+									<td
+										colSpan={2}
+										className="border text-muted-foreground border-gray-300 p-2 text-center"
+									>
+										No backups found.
+									</td>
+								</tr>
+							) : null}
+						</tbody>
+					</table>
+				)}
+			</>
+		);
+	}
 
 	function SearchScreen() {
 		const searchParams = useSearchParams();
@@ -279,6 +370,8 @@ export default function GodMode() {
 						</CommandItem>
 					</CommandGroup>
 
+					<CommandSeparator />
+
 					<CommandGroup heading="Tables">
 						{db_info?.tables?.sort().map((table) => (
 							<CommandItem
@@ -312,11 +405,18 @@ export default function GodMode() {
 								))}
 					</CommandGroup>
 
-					{/* <CommandGroup heading="Settings">
-                        <CommandItem>Profile</CommandItem>
-                        <CommandItem>Billing</CommandItem>
-                        <CommandItem>Settings</CommandItem>
-                    </CommandGroup> */}
+					<CommandSeparator />
+
+					<CommandGroup heading="Other">
+						{searchParams.has("db_id") && (
+							<CommandItem onSelect={() => setGodModeCurrentScreen("backup")}>
+								<div className="flex gap-1 content-center items-center">
+									<DatabaseBackupIcon width={14} height={14} />
+									Database Backups
+								</div>
+							</CommandItem>
+						)}
+					</CommandGroup>
 				</CommandList>
 			</Command>
 		);
