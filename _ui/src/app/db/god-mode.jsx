@@ -21,8 +21,12 @@ import {
 	DatabaseBackupIcon,
 	DatabaseIcon,
 	FanIcon,
+	FilePlus2Icon,
+	FilePlusIcon,
 	HardDriveIcon,
 	IceCream,
+	LoaderIcon,
+	PlusIcon,
 	SearchIcon,
 	StarsIcon,
 } from "lucide-react";
@@ -154,9 +158,9 @@ export default function GodMode() {
 				<Button
 					type="button"
 					size="sm"
-					variant="secondary"
-					className="w-40"
+					variant="link"
 					disabled={isPending}
+					className="w-40 justify-start p-0"
 					onClick={() => {
 						const formData = new FormData();
 						formData.append("db_id", db_id);
@@ -168,7 +172,15 @@ export default function GodMode() {
 						});
 					}}
 				>
-					{isPending ? "Backing up..." : "Create"}
+					{isPending ? (
+						<>
+							Creating <LoaderIcon className="ml-1 size-4 animate-spin" />{" "}
+						</>
+					) : (
+						<>
+							<PlusIcon className="size-4 mr-1" /> Create
+						</>
+					)}
 				</Button>
 
 				{backupsAreLoading ? (
