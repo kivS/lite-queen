@@ -193,7 +193,7 @@ export default function GodMode() {
 								<th className="border border-gray-300 p-2">Backup File</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody className="">
 							{data?.backups?.map((backup) => (
 								<tr key={backup.timestamp}>
 									<td className="border border-gray-300 p-2 text-xs text-center">
@@ -208,7 +208,7 @@ export default function GodMode() {
 								<tr>
 									<td
 										colSpan={2}
-										className="border border-gray-300 p-2 text-center"
+										className="border text-muted-foreground border-gray-300 p-2 text-center"
 									>
 										No backups found.
 									</td>
