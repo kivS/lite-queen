@@ -160,12 +160,15 @@ export default function GodMode() {
 						<tbody>
 							{data?.backups?.map((backup) => (
 								<tr key={backup.timestamp}>
-									<td className="border border-gray-300 p-2">
+									<td className="border border-gray-300 p-2 text-xs">
 										{new Date(backup.timestamp).toLocaleString()}
 									</td>
-									<td className="border border-gray-300 p-2">{backup.file}</td>
+									<td className="border border-gray-300 p-2 text-sm">
+										{backup.file}
+									</td>
 								</tr>
-							)) || (
+							))}
+							{data?.backups && data.backups.length === 0 ? (
 								<tr>
 									<td
 										colSpan={2}
@@ -174,7 +177,7 @@ export default function GodMode() {
 										No backups found.
 									</td>
 								</tr>
-							)}
+							) : null}
 						</tbody>
 					</table>
 				)}

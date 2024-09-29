@@ -511,7 +511,8 @@ const server = Bun.serve({
 				);
 			}
 
-			const backups = shortTermMemory.databases[db_id].backups || [];
+			const backups =
+				shortTermMemory.databases[db_id]?.backups?.reverse() || [];
 
 			return Response.json(
 				{
