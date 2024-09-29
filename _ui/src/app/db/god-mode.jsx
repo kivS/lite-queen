@@ -145,15 +145,36 @@ export default function GodMode() {
 
 		return (
 			<>
-				<h1>hello</h1>
+				<header>
+					<h1 className="text-2xl text-center font-semibold">
+						Manage your backups
+					</h1>
+				</header>
+
+				<Button
+					type="button"
+					className="w-40"
+					onClick={() => {
+						const formData = new FormData();
+						formData.append("db_id", db_id);
+
+						startTransition(async () => {
+							const result = await backupDatabase(formData);
+							console.log(result);
+							mutate(`${ROOT_URL}/api/database-backups?db_id=${db_id}`);
+						});
+					}}
+				>
+					{isPending ? "Backing up..." : "Create"}
+				</Button>
 
 				{backupsAreLoading ? (
 					<p>Loading backups...</p>
 				) : (
 					<table className="min-w-full border-collapse border border-gray-200">
 						<thead>
-							<tr>
-								<th className="border border-gray-300 p-2">Timestamp</th>
+							<tr className="text-sm">
+								<th className="border border-gray-300 p-2">Created at</th>
 								<th className="border border-gray-300 p-2">Backup File</th>
 							</tr>
 						</thead>
@@ -181,22 +202,6 @@ export default function GodMode() {
 						</tbody>
 					</table>
 				)}
-
-				<button
-					type="button"
-					onClick={() => {
-						const formData = new FormData();
-						formData.append("db_id", db_id);
-
-						startTransition(async () => {
-							const result = await backupDatabase(formData);
-							console.log(result);
-							mutate(`${ROOT_URL}/api/database-backups?db_id=${db_id}`);
-						});
-					}}
-				>
-					{isPending ? "Backing up..." : "Backup"}
-				</button>
 			</>
 		);
 	}
