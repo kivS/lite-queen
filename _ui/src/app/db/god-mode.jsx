@@ -154,6 +154,7 @@ export default function GodMode() {
 				<Button
 					type="button"
 					size="sm"
+					variant="secondary"
 					className="w-40"
 					disabled={isPending}
 					onClick={() => {
