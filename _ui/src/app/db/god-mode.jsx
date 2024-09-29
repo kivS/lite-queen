@@ -153,7 +153,9 @@ export default function GodMode() {
 
 				<Button
 					type="button"
+					size="sm"
 					className="w-40"
+					disabled={isPending}
 					onClick={() => {
 						const formData = new FormData();
 						formData.append("db_id", db_id);
@@ -184,8 +186,8 @@ export default function GodMode() {
 									<td className="border border-gray-300 p-2 text-xs text-center">
 										{new Date(backup.timestamp).toLocaleString()}
 									</td>
-									<td className="border border-gray-300 p-2 text-sm">
-										{backup.file}
+									<td className="border border-gray-300 p-2 text-xs text-center">
+										{backup.file_name}
 									</td>
 								</tr>
 							))}

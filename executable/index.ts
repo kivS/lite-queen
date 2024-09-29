@@ -15,7 +15,7 @@ type ShortTermMemoryDatabase = {
 	db_path: string;
 	db_size_in_bytes: number;
 	db_last_modified: number;
-	backups: { timestamp: number; file: string }[];
+	backups: { timestamp: number; file_name: string; file_location: string }[];
 };
 
 type ShortTermMemory = {
@@ -486,7 +486,8 @@ const server = Bun.serve({
 
 			shortTermMemory.databases[db_id.toString()].backups.push({
 				timestamp: Date.now(),
-				file: backup_file,
+				file_name: backup_file,
+				file_location: `${backup_location}/${backup_file}`,
 			});
 
 			console.debug(shortTermMemory.databases[db_id.toString()]);
