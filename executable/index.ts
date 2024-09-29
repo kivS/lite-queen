@@ -14,7 +14,7 @@ type ShortTermMemoryDatabase = {
 	db_path: string;
 	db_size_in_bytes: number;
 	db_last_modified: number;
-	backups: { timestamp: string; file: string }[];
+	backups: { timestamp: number; file: string }[];
 };
 
 type ShortTermMemory = {
@@ -445,6 +445,7 @@ const server = Bun.serve({
 
 			console.debug({ shortTermMemoryDatabase });
 
+			// detect if sqlite3 is present
 			try {
 				const output = await $`sqlite3 --version`.text();
 			} catch (error) {
@@ -483,11 +484,14 @@ const server = Bun.serve({
 			}
 
 			shortTermMemory.databases[db_id.toString()].backups.push({
-				timestamp: new Date().toISOString(),
+				timestamp: Date.now(),
 				file: backup_file,
 			});
 
-			console.log(shortTermMemory);
+			console.debug(shortTermMemory.databases[db_id.toString()]);
+
+			// not so fast man
+			Bun.sleepSync(1000);
 
 			return Response.json(
 				{
