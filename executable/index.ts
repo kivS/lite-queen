@@ -444,8 +444,6 @@ const server = Bun.serve({
 			const shortTermMemoryDatabase =
 				shortTermMemory.databases[db_id.toString()];
 
-			console.debug({ shortTermMemoryDatabase });
-
 			// detect if sqlite3 is present
 			try {
 				const output = await $`sqlite3 --version`.text();
@@ -489,8 +487,6 @@ const server = Bun.serve({
 				file_name: backup_file,
 				file_location: `${backup_location}/${backup_file}`,
 			});
-
-			console.debug(shortTermMemory.databases[db_id.toString()]);
 
 			// not so fast man
 			Bun.sleepSync(1000);

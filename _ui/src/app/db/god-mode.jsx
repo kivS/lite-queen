@@ -168,7 +168,6 @@ export default function GodMode() {
 
 						startTransition(async () => {
 							const result = await backupDatabase(formData);
-							console.log(result);
 							mutate(`${ROOT_URL}/api/database-backups?db_id=${db_id}`);
 						});
 					}}
