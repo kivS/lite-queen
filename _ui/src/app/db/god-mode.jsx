@@ -143,16 +143,17 @@ export default function GodMode() {
 		const searchParams = useSearchParams();
 		const db_id = searchParams.get("db_id");
 
-		const { data, isLoading: backupsAreLoading } = getDatabaseBackups(db_id);
+		const { data: database } = getDatabaseInfo(db_id);
 
-		console.log(data);
+		const { data, isLoading: backupsAreLoading } = getDatabaseBackups(db_id);
 
 		return (
 			<>
 				<header>
-					<h1 className="text-2xl text-center font-semibold">
-						Manage your backups
-					</h1>
+					<h1 className="text-2xl text-center font-semibold">Manage Backups</h1>
+					<p className="truncate text-center text-sm text-muted-foreground py-1">
+						for <strong>{database?.db_alias} </strong>
+					</p>
 				</header>
 
 				<Button
