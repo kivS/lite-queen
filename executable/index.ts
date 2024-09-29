@@ -4,6 +4,7 @@ import { parseArgs } from "node:util";
 import { randomUUID } from "node:crypto";
 import { $ } from "bun";
 import { mkdir } from "node:fs/promises";
+import path from "node:path";
 
 const IS_DEV_MODE = process.env.IS_DEV === "true";
 
@@ -459,7 +460,7 @@ const server = Bun.serve({
 			}
 
 			const backup_location = `${flags.data_dir === "" ? backup_folder_location : flags.data_dir}/${shortTermMemoryDatabase.db_id.toString()}`;
-			const backup_file = `${backup_location}/${Date.now()}_backup.db`;
+			const backup_file = `${Date.now()}_backup.db`;
 
 			try {
 				await mkdir(backup_location, {
@@ -467,7 +468,7 @@ const server = Bun.serve({
 				});
 
 				const result =
-					await $`sqlite3 ${shortTermMemoryDatabase.db_path}  ".backup ${backup_file}`;
+					await $`sqlite3 ${shortTermMemoryDatabase.db_path}  ".backup ${backup_location}/${backup_file}`;
 			} catch (error) {
 				console.error(error);
 				return Response.json(

@@ -181,7 +181,7 @@ export default function GodMode() {
 						<tbody>
 							{data?.backups?.map((backup) => (
 								<tr key={backup.timestamp}>
-									<td className="border border-gray-300 p-2 text-xs">
+									<td className="border border-gray-300 p-2 text-xs text-center">
 										{new Date(backup.timestamp).toLocaleString()}
 									</td>
 									<td className="border border-gray-300 p-2 text-sm">
