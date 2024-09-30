@@ -60,6 +60,7 @@ import { useGlobal } from "../global-context";
 import { mutate } from "swr";
 import { MultiSelect } from "@/components/multi-select";
 import { Cat, Dog, Fish, Rabbit, Turtle } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function GodMode() {
 	const {
@@ -141,6 +142,8 @@ export default function GodMode() {
 	function BackupScreen() {
 		const [isPending, startTransition] = useTransition();
 		const searchParams = useSearchParams();
+		const { toast } = useToast();
+
 		const db_id = searchParams.get("db_id");
 
 		const { data: database } = getDatabaseInfo(db_id);
@@ -169,7 +172,11 @@ export default function GodMode() {
 						startTransition(async () => {
 							const result = await backupDatabase(formData);
 							if (!result.ok) {
-								alert(`Failed to create backup. ${result?.message}`);
+								toast({
+									title: "Failed to backup database",
+									description: result?.message,
+									variant: "destructive",
+								});
 							}
 							mutate(`${ROOT_URL}/api/database-backups?db_id=${db_id}`);
 						});
