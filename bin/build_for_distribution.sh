@@ -70,6 +70,6 @@ if git diff --name-only HEAD^ HEAD | grep --quiet -e "_ui/" -e "executable/"; th
 fi
 
 
-echo "❌ No detected valid changes for building the private apps... carry on!"
+echo "❌ No detected valid changes for building the executables & Docker image for distribution... carry on!"
 exit 0
 
