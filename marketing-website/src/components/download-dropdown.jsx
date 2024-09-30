@@ -12,19 +12,19 @@ import { Suspense } from "react";
 const executables = [
 	{
 		name: "Linux arm64",
-		link: "https://download.litequeen.com/lite-queen-linux-arm64",
+		link: "https://github.com/kivS/lite-queen/releases",
 	},
 	{
 		name: "Linux x64",
-		link: "https://download.litequeen.com/lite-queen-linux-x64",
+		link: "https://github.com/kivS/lite-queen/releases",
 	},
 	{
 		name: "Apple Silicon",
-		link: "https://download.litequeen.com/lite-queen-darwin-arm64",
+		link: "https://github.com/kivS/lite-queen/releases",
 	},
 	{
 		name: "Apple Intel x64",
-		link: "https://download.litequeen.com/lite-queen-darwin-x64",
+		link: "https://github.com/kivS/lite-queen/releases",
 	},
 	{
 		name: "Docker",
