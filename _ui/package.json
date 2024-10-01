@@ -6,7 +6,8 @@
     "dev": "next dev --experimental-https",
     "build": "next build",
     "start": "npx serve@latest out",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-static-bundle": "make-vfs --dir ./out --content-format buffer --outfile static-ui-bundle.js"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.0.4",
@@ -46,6 +47,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
+    "make-vfs": "^1.0.15",
     "typescript": "5.2.2"
   }
 }
