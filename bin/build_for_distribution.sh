@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #
+# 
 # this can be run before a commit is pushed by being called with the pre-push hook: .git/hooks/pre-push 
 #  
 
@@ -54,8 +55,8 @@ if git diff --name-only HEAD^ HEAD | grep --quiet -e "_ui/" -e "executable/"; th
     echo "Building and pushing the docker image..."
     docker buildx build  --platform linux/amd64,linux/arm64 -t  kivsegrob/lite-queen:latest --push .
 
-    build_executable darwin x64
-    build_executable darwin arm64
+    # build_executable darwin x64
+    # build_executable darwin arm64
 
     echo "Builds completed. Check the 'executable/dist' directory for output."
 
