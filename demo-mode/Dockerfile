@@ -16,6 +16,10 @@ COPY --from=executables /home/litequeen/lite-queen-arm64 ./lite-queen
 RUN apt-get update -y 
 RUN apt-get install curl -y 
 
+# sqlite3 cli
+RUN apt update -y
+RUN apt install sqlite3 -y
+
 COPY ./bin /app/bin
 
 # Copy the SQLite database files

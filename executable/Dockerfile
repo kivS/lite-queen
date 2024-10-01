@@ -19,6 +19,9 @@ WORKDIR /home/litequeen
 COPY --from=amd64 /home/litequeen/lite-queen /home/litequeen/lite-queen-amd64
 COPY --from=arm64 /home/litequeen/lite-queen /home/litequeen/lite-queen-arm64
 
+RUN apt update -y
+RUN apt install -y sqlite3
+
 # Create a script to select the correct binary
 RUN echo '#!/bin/sh' > /usr/local/bin/lite-queen && \
     echo 'if [ "$(uname -m)" = "x86_64" ]; then' >> /usr/local/bin/lite-queen && \
