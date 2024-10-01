@@ -3,9 +3,9 @@ FROM node:20-alpine AS build_nextjs
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 
-COPY  ./ /app/
+COPY  ./_ui /app/
 
-WORKDIR /app/_ui
+WORKDIR /app
 
 RUN npm ci --legacy-peer-deps
 
@@ -19,32 +19,47 @@ RUN npm run build
 # generate static bundle for the bun executables
 RUN npm run generate-static-bundle
 
-FROM oven/bun:1 AS build_bunjs
+# ------------------------------------------------------------------
 
+FROM oven/bun:1 AS build_bunjs
 
 COPY  ./executable /app/
 
 WORKDIR /app
 
-COPY --from=build_nextjs /app/_ui/static-ui-bundle.js /app/static-ui-bundle.js
+# all the static ui we built in the build_nextjs layer
+COPY --from=build_nextjs /app/static-ui-bundle.js /app/static-ui-bundle.js
 
 
 RUN bun install
 
+# RUN bun build-dist-linux-x64
+# RUN bun run build-dist-linux-arm64
 
-
+# ------------------------------------------------------------------
 
 # # AMD64 build
 # FROM debian:12-slim AS amd64
+
 # WORKDIR /home/litequeen
-# COPY dist/lite-queen-linux-x64 ./lite-queen
+
+# COPY --from=build_bunjs /app/dist/lite-queen-linux-x64  ./lite-queen
+
 # RUN chmod +x lite-queen
+
+# ------------------------------------------------------------------
 
 # # ARM64 build
 # FROM debian:12-slim AS arm64
+
 # WORKDIR /home/litequeen
-# COPY dist/lite-queen-linux-arm64 ./lite-queen
+
+# COPY --from=build_bunjs /app/dist/lite-queen-linux-arm64  ./lite-queen
+
+
 # RUN chmod +x lite-queen
+
+# # ------------------------------------------------------------------
 
 # # Final stage
 # FROM debian:12-slim AS final

@@ -13,7 +13,7 @@
     "build-dist-linux-x64": "bun build --define process.env.BUILD_DATE=\"'$(date -u +\"%Y-%m-%dT%H:%M:%SZ\")'\" index.ts --compile --minify --target=bun-linux-x64-baseline --outfile dist/lite-queen-linux-x64",
     "build-dist-linux-arm64": "bun build --define process.env.BUILD_DATE=\"'$(date -u +\"%Y-%m-%dT%H:%M:%SZ\")'\" index.ts --compile --minify --target=bun-linux-arm64  --outfile dist/lite-queen-linux-arm64",
     "build-dist-darwin-x64": "bun build --define process.env.BUILD_DATE=\"'$(date -u +\"%Y-%m-%dT%H:%M:%SZ\")'\" index.ts --compile --minify --target=bun-darwin-x64  --outfile dist/lite-queen-darwin-x64",
-    "build-dist-darwin-arm64": "bun _build_ui; bun _generate-static-bundle; bun build --define process.env.BUILD_DATE=\"'$(date -u +\"%Y-%m-%dT%H:%M:%SZ\")'\" index.ts --compile --minify --target=bun-darwin-arm64  --outfile dist/lite-queen-darwin-arm64"
+    "build-dist-darwin-arm64": "bun build --define process.env.BUILD_DATE=\"'$(date -u +\"%Y-%m-%dT%H:%M:%SZ\")'\" index.ts --compile --minify --target=bun-darwin-arm64  --outfile dist/lite-queen-darwin-arm64"
   },
   "type": "module"
 }
