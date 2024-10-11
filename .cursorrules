@@ -1,0 +1,7 @@
+- `executable/` is a BunJS project
+- `marketing-website/` is a NextJS 14 website
+- `_ui/` is a NextJS app
+
+All of these form Lite Queen, an app to manage SQLite databases on a VPS(Virtual Private Server).
+
+Think carefully before you answer since you want your answers to be accurate lest they cause human unhapiness.
