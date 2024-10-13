@@ -117,7 +117,7 @@ export function IntroFooter() {
 			</IconLink>
 			<span>/</span>
 			<IconLink
-				href="https://github.com/kivS/lite-queen/issues"
+				href="https://github.com/kivS/lite-queen/discussions/new?category=q-a"
 				icon={SupportIcon}
 				data-umami-event="Support link"
 				className="flex-none"
