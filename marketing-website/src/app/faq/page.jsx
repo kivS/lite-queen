@@ -33,8 +33,7 @@ export default async function FaqPage() {
 						</summary>
 						<p>
 							<strong>Nothing!</strong> All the data is kept on your servers and
-							nothing is sent outside or used. The only external calls Lite
-							Queen makes is to validate the license key.
+							nothing is sent outside or used.
 						</p>
 					</details>
 				</div>
