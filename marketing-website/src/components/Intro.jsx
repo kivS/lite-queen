@@ -9,11 +9,6 @@ import BuyCard from "./buy-card";
 import FeaturesCarousel from "./features-carousel";
 import { BookIcon, DrumstickIcon, IconSlash, X } from "./icons";
 
-import { DialogContent } from "@radix-ui/react-dialog";
-import { Dialog } from "./ui/dialog";
-import BuyModal from "./buy-modal";
-import DownloadDropdown from "./download-dropdown";
-
 export function Intro() {
 	return (
 		<>
@@ -92,14 +87,14 @@ function DemoButton() {
 
 					<IconSlash className="dark:text-white self-center size-4" /> */}
 
-			<Link
+			<a
 				href="https://demo.litequeen.com"
 				data-umami-event="Demo button"
 				className=" flex w-40 py-1 px-2 border-black dark:border-white border rounded-lg  gap-1 items-center font-medium justify-center hover:scale-105 hover:text-landing-accent-light"
 			>
 				<DrumstickIcon className="size-4" />
 				<span>Demo</span>
-			</Link>
+			</a>
 		</div>
 	);
 }
@@ -121,6 +116,7 @@ export function IntroFooter() {
 				icon={SupportIcon}
 				data-umami-event="Support link"
 				className="flex-none"
+				external
 			>
 				Support
 			</IconLink>
@@ -141,6 +137,7 @@ export function IntroFooter() {
 				icon={XIcon}
 				iconClassName="size-3 self-baseline"
 				title="Created by Vik"
+				external
 			/>
 		</p>
 	);

@@ -7,10 +7,13 @@ export function IconLink({
 	iconClassName,
 	compact = false,
 	icon: Icon,
+	external = undefined, // New prop to determine if it should use <a>
 	...props
 }) {
+	const LinkComponent = external ? "a" : Link;
+
 	return (
-		<Link
+		<LinkComponent
 			{...props}
 			className={clsx(
 				className,
@@ -25,6 +28,6 @@ export function IconLink({
 				/>
 			)}
 			<span className="self-baseline dark:text-white">{children}</span>
-		</Link>
+		</LinkComponent>
 	);
 }
