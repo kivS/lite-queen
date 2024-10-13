@@ -33,7 +33,7 @@ export default async function FaqPage() {
 						</summary>
 						<p>
 							<strong>Nothing!</strong> All the data is kept on your servers and
-							nothing is sent outside or used.
+							nothing is sent outside nor used.
 						</p>
 					</details>
 				</div>
