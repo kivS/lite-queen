@@ -23,24 +23,26 @@ export function Intro() {
 				<span className="text-landing-accent-light">ease</span>
 			</h1>
 
-			<div className="mt-8 font-medium text-lg/6 dark:text-gray-300 text-pretty text-center">
-				Lite Queen is an open-source SQLite database management software that
-				runs on your server.
-				<div className="flex ">
+			<div className="mt-8">
+				<p className="font-medium py-4 text-lg/6 dark:text-gray-300 text-pretty text-center">
+					Lite Queen is an open-source SQLite database management software that
+					runs on your server.
+				</p>
+				<div className="flex flex-col md:flex-row  gap-2">
 					<a
 						target="_blank"
 						rel="noreferrer"
 						href="https://github.com/kivS/lite-queen"
-						className="flex mt-4 items-center gap-1  p-1 justify-center w-2/4 mx-auto hover:scale-105 hover:text-landing-accent-light  dark:border-white  rounded-lg font-medium "
+						className="flex mt-4 border  items-center gap-2  p-1 justify-center w-2/4 mx-auto hover:scale-105 hover:text-landing-accent-light  dark:border-white  rounded-lg font-medium "
 					>
-						<GitHubIcon className="size-4" />
-						<span className="text-sm">kivS/lite-queen</span>
+						<GitHubIcon className="size-6" />
+						<span className="md:text-lg">kivS/lite-queen</span>
 					</a>
 					<a
 						target="_blank"
 						rel="noreferrer"
 						href="https://github.com/sponsors/kivS"
-						className="flex mt-4 items-center gap-1 hover:text-red-400 p-1 justify-center w-2/4 mx-auto hover:scale-105 hover:text-landing-accent-light   rounded-lg font-medium "
+						className="flex mt-4 border items-center gap-2 hover:text-red-400 p-1 justify-center w-2/4 mx-auto hover:scale-105 hover:text-landing-accent-light   rounded-lg font-medium "
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -52,13 +54,13 @@ export function Intro() {
 							strokeWidth={2}
 							strokeLinecap="round"
 							strokeLinejoin="round"
-							className="size-4"
+							className="size-6"
 						>
 							<title>Sponsor the project</title>
 							<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
 						</svg>
 
-						<span className="text-sm">Sponsor</span>
+						<span className="md:text-lg">Sponsor</span>
 					</a>
 				</div>
 			</div>
@@ -76,7 +78,7 @@ export function Intro() {
 				<div className="my-12 flex flex-col gap-10">
 					<DemoButton />
 
-					<DownloadDropdown />
+					{/* <DownloadDropdown /> */}
 				</div>
 			</div>
 		</>
@@ -122,7 +124,7 @@ export function IntroFooter() {
 			>
 				Support
 			</IconLink>
-			<span>/</span>
+			{/* <span>/</span>
 			<IconLink
 				data-umami-event="RSS link"
 				href="/feed.xml"
@@ -130,7 +132,7 @@ export function IntroFooter() {
 				className="flex-none"
 			>
 				RSS
-			</IconLink>
+			</IconLink> */}
 			<span>/</span>
 			<IconLink
 				href="https://twitter.com/kivsegrob"
