@@ -105,6 +105,11 @@ function DemoButton() {
 export function IntroFooter() {
 	return (
 		<p className="flex items-baseline  gap-x-2 text-[0.8125rem]/6 text-gray-500">
+			<IconLink href="/guides" icon={FaqIcon} className="flex-none">
+				Guides
+			</IconLink>
+			<span>/</span>
+
 			<IconLink href="/faq" icon={FaqIcon} className="flex-none">
 				FAQ
 			</IconLink>
@@ -133,9 +138,8 @@ export function IntroFooter() {
 				className="text-xs "
 				icon={XIcon}
 				iconClassName="size-3 self-baseline"
-			>
-				<span className="hidden sm:block ">By Vik</span>
-			</IconLink>
+				title="Created by Vik"
+			/>
 		</p>
 	);
 }
