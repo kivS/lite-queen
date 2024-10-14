@@ -23,12 +23,12 @@ export function Intro() {
 					Lite Queen is an open-source SQLite database management software that
 					runs on your server.
 				</p>
-				<div className="flex flex-col md:flex-row  gap-2">
+				<div className="flex flex-col   gap-2">
 					<a
 						target="_blank"
 						rel="noreferrer"
 						href="https://github.com/kivS/lite-queen"
-						className="flex mt-4 border  items-center gap-2  p-1 justify-center w-2/4 mx-auto hover:scale-105 hover:text-landing-accent-light  dark:border-white  rounded-lg font-medium "
+						className="flex bg-slate-500 text-gray-200 mt-4 border  items-center gap-2  p-1 justify-center w-2/4 mx-auto hover:scale-105   dark:border-white  rounded-lg font-medium "
 					>
 						<GitHubIcon className="size-6" />
 						<span className="md:text-lg">kivS/lite-queen</span>
@@ -37,7 +37,7 @@ export function Intro() {
 						target="_blank"
 						rel="noreferrer"
 						href="https://github.com/sponsors/kivS"
-						className="flex mt-4 border items-center gap-2 hover:text-red-400 p-1 justify-center w-2/4 mx-auto hover:scale-105 hover:text-landing-accent-light   rounded-lg font-medium "
+						className="flex mt-4 bg-pink-700 text-gray-200 border items-center gap-2  p-1 justify-center w-2/4 mx-auto hover:scale-105 rounded-lg font-medium "
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -57,23 +57,17 @@ export function Intro() {
 
 						<span className="md:text-lg">Sponsor</span>
 					</a>
-				</div>
-			</div>
 
-			{/* <SignUpForm /> */}
+					<hr className="my-8" />
 
-			<div className="mt-4 flex flex-col flex-wrap justify-center gap-8  lg:justify-start">
-				{/* <IconLink href="#" icon={BookIcon} className="flex-none">
-          Documentation
-        </IconLink> */}
-				{/* <IconLink href="https://demo.litequeen.com/" icon={DrumstickIcon} className=" border rounded-md p-8">
-          DEMO
-        </IconLink> */}
-
-				<div className="my-12 flex flex-col gap-10">
-					<DemoButton />
-
-					{/* <DownloadDropdown /> */}
+					<a
+						href="https://demo.litequeen.com"
+						data-umami-event="Demo button"
+						className="flex mt-4 border bg-cyan-800 text-gray-200  items-center gap-2  p-2 justify-center w-2/4 mx-auto hover:scale-105 dark:border-white  rounded-lg font-medium "
+					>
+						<DrumstickIcon className="size-5" />
+						<span>Demo</span>
+					</a>
 				</div>
 			</div>
 		</>
