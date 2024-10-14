@@ -58,14 +58,14 @@ export function Intro() {
 						<span className="md:text-lg">Sponsor</span>
 					</a>
 
-					<hr className="my-8 dark:opacity-20" />
+					<hr className="my-8 dark:opacity-20  w-2/3 mx-auto" />
 
 					<a
 						href="https://demo.litequeen.com"
 						target="_blank"
 						rel="noreferrer"
 						data-umami-event="Demo button"
-						className="flex mt-4 border bg-cyan-800 text-gray-200  items-center gap-2  p-2 justify-center w-2/4 mx-auto hover:scale-105 dark:border-gray-200  rounded-lg font-medium "
+						className="flex mt-4 border bg-sky-700 text-gray-200  items-center gap-2  p-2 justify-center w-2/4 mx-auto hover:scale-105 dark:border-gray-200  rounded-lg font-medium "
 					>
 						<DrumstickIcon className="size-5" />
 						<span>Demo</span>
