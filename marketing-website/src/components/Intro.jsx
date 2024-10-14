@@ -28,7 +28,7 @@ export function Intro() {
 						target="_blank"
 						rel="noreferrer"
 						href="https://github.com/kivS/lite-queen"
-						className="flex bg-slate-500 text-gray-200 mt-4 border  items-center gap-2  p-1 justify-center w-2/4 mx-auto hover:scale-105   dark:border-white  rounded-lg font-medium "
+						className="flex bg-slate-800 text-gray-200 mt-4 border  items-center gap-2  p-1 justify-center w-2/4 mx-auto hover:scale-105   dark:border-gray-200  rounded-lg font-medium "
 					>
 						<GitHubIcon className="size-6" />
 						<span className="md:text-lg">kivS/lite-queen</span>
@@ -37,7 +37,7 @@ export function Intro() {
 						target="_blank"
 						rel="noreferrer"
 						href="https://github.com/sponsors/kivS"
-						className="flex mt-4 bg-pink-700 text-gray-200 border items-center gap-2  p-1 justify-center w-2/4 mx-auto hover:scale-105 rounded-lg font-medium "
+						className="flex mt-4 bg-pink-700 text-gray-200 border items-center gap-2  p-1 justify-center w-2/4 mx-auto hover:scale-105 dark:border-gray-200 rounded-lg font-medium "
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,7 @@ export function Intro() {
 							strokeWidth={2}
 							strokeLinecap="round"
 							strokeLinejoin="round"
-							className="size-6"
+							className="size-5"
 						>
 							<title>Sponsor the project</title>
 							<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
@@ -58,12 +58,14 @@ export function Intro() {
 						<span className="md:text-lg">Sponsor</span>
 					</a>
 
-					<hr className="my-8" />
+					<hr className="my-8 dark:opacity-20" />
 
 					<a
 						href="https://demo.litequeen.com"
+						target="_blank"
+						rel="noreferrer"
 						data-umami-event="Demo button"
-						className="flex mt-4 border bg-cyan-800 text-gray-200  items-center gap-2  p-2 justify-center w-2/4 mx-auto hover:scale-105 dark:border-white  rounded-lg font-medium "
+						className="flex mt-4 border bg-cyan-800 text-gray-200  items-center gap-2  p-2 justify-center w-2/4 mx-auto hover:scale-105 dark:border-gray-200  rounded-lg font-medium "
 					>
 						<DrumstickIcon className="size-5" />
 						<span>Demo</span>
@@ -71,25 +73,6 @@ export function Intro() {
 				</div>
 			</div>
 		</>
-	);
-}
-
-function DemoButton() {
-	return (
-		<div className="flex flex-row  gap-1 justify-center  dark:text-white ">
-			{/* <FeaturesCarousel />
-
-					<IconSlash className="dark:text-white self-center size-4" /> */}
-
-			<a
-				href="https://demo.litequeen.com"
-				data-umami-event="Demo button"
-				className=" flex w-40 py-1 px-2 border-black dark:border-white border rounded-lg  gap-1 items-center font-medium justify-center hover:scale-105 hover:text-landing-accent-light"
-			>
-				<DrumstickIcon className="size-4" />
-				<span>Demo</span>
-			</a>
-		</div>
 	);
 }
 
