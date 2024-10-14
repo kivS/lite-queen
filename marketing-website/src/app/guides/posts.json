@@ -1,9 +1,17 @@
  [
 	 {
+		 "title": "Run Lite Queen with a one-click service on Coolify",
+		 "slug": "test",
+		 "created_at": "2024-10-14T11:26:36+0800",
+		 "updated_at": "",
+		 "description": "",
+		  "path": "(content)/post4.mdx"
+	 },
+	 {
 		 "title": "How to manage SQLite databases on a Linux server with Coolify and Lite Queen",
 		 "slug": "how-to-manage-sqlite-databases-on-a-linux-server-with-coolify-and-lite-queen",
 		 "created_at": "2024-09-25T16:58:04+0800",
-		 "updated_at": "2024-09-25T16:58:04+0800",
+		 "updated_at": "",
 		 "description": "",
 		  "path": "(content)/post3.mdx"
 	 },
@@ -11,7 +19,7 @@
 		 "title": "How to manage SQLite databases on a Linux Ubuntu server with Lite Queen and Systemd",
 		 "slug": "how-to-manage-sqlite-databases-on-a-linux-ubuntu-server-with-lite-queen-and-systemd",
 		 "created_at": "2024-09-25T16:58:04+0800",
-		 "updated_at": "2024-09-25T16:58:04+0800",
+		 "updated_at": "",
 		 "description": "",
 		  "path": "(content)/post2.mdx"
 	 },
@@ -19,7 +27,7 @@
 		"title": "How to manage SQLite databases on a Linux Ubuntu server with Lite Queen and Docker",
 		"slug": "how-to-manage-sqlite-databases-on-a-linux-ubuntu-server-with-lite-queen-and-docker",
 		"created_at": "2024-09-25T16:58:04+0800",
-		"updated_at": "2024-09-25T16:58:04+0800",
+		"updated_at": "",
 		"description": "",
 		"path": "(content)/post1.mdx"
 	}
