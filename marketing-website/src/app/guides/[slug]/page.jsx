@@ -40,7 +40,7 @@ export default async function PostPage({ params }) {
 			<div className="pb-8">
 				<Link
 					href="/guides/"
-					className="no-underline hover:underline flex gap-2 items-center"
+					className="no-underline  hover:underline flex gap-2 items-center"
 				>
 					<ArrowLeft className="size-5" />
 					All the posts

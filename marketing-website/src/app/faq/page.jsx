@@ -40,7 +40,10 @@ export default async function FaqPage() {
 
 				<p className="text-center mt-20">
 					You still have questions?{" "}
-					<a href="http://" className="underline">
+					<a
+						href="https://github.com/kivS/lite-queen/discussions/new?category=q-a"
+						className="underline"
+					>
 						Let's us know.
 					</a>
 				</p>
