@@ -7,12 +7,7 @@ import { Button } from "./Button";
 import Script from "next/script";
 import BuyCard from "./buy-card";
 import FeaturesCarousel from "./features-carousel";
-import { DrumstickIcon, IconSlash, X } from "./icons";
-
-import { DialogContent } from "@radix-ui/react-dialog";
-import { Dialog } from "./ui/dialog";
-import BuyModal from "./buy-modal";
-import DownloadDropdown from "./download-dropdown";
+import { BookIcon, DrumstickIcon, IconSlash, X } from "./icons";
 
 export function Intro() {
 	return (
@@ -23,24 +18,26 @@ export function Intro() {
 				<span className="text-landing-accent-light">ease</span>
 			</h1>
 
-			<div className="mt-8 font-medium text-lg/6 dark:text-gray-300 text-pretty text-center">
-				Lite Queen is an open-source SQLite database management software that
-				runs on your server.
-				<div className="flex ">
+			<div className="mt-8">
+				<p className="font-medium py-4 text-lg/6 dark:text-gray-300 text-pretty text-center">
+					Lite Queen is an open-source SQLite database management software that
+					runs on your server.
+				</p>
+				<div className="flex flex-col   gap-2">
 					<a
 						target="_blank"
 						rel="noreferrer"
 						href="https://github.com/kivS/lite-queen"
-						className="flex mt-4 items-center gap-1  p-1 justify-center w-2/4 mx-auto hover:scale-105 hover:text-landing-accent-light  dark:border-white  rounded-lg font-medium "
+						className="flex bg-slate-800 text-gray-200 mt-4 border  items-center gap-2  p-1 justify-center w-2/4 mx-auto hover:scale-105   dark:border-gray-900  rounded-lg font-medium "
 					>
-						<GitHubIcon className="size-4" />
-						<span className="text-sm">kivS/lite-queen</span>
+						<GitHubIcon className="size-6" />
+						<span className="md:text-lg">kivS/lite-queen</span>
 					</a>
 					<a
 						target="_blank"
 						rel="noreferrer"
 						href="https://github.com/sponsors/kivS"
-						className="flex mt-4 items-center gap-1 hover:text-red-400 p-1 justify-center w-2/4 mx-auto hover:scale-105 hover:text-landing-accent-light   rounded-lg font-medium "
+						className="flex mt-4 bg-pink-700 text-gray-200 border items-center gap-2  p-1 justify-center w-2/4 mx-auto hover:scale-105 dark:border-gray-900 rounded-lg font-medium "
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -52,72 +49,55 @@ export function Intro() {
 							strokeWidth={2}
 							strokeLinecap="round"
 							strokeLinejoin="round"
-							className="size-4"
+							className="size-5"
 						>
 							<title>Sponsor the project</title>
 							<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
 						</svg>
 
-						<span className="text-sm">Sponsor</span>
+						<span className="md:text-lg">Sponsor</span>
 					</a>
-				</div>
-			</div>
 
-			{/* <SignUpForm /> */}
+					<hr className="my-8 dark:opacity-20  w-2/3 mx-auto" />
 
-			<div className="mt-4 flex flex-col flex-wrap justify-center gap-8  lg:justify-start">
-				{/* <IconLink href="#" icon={BookIcon} className="flex-none">
-          Documentation
-        </IconLink> */}
-				{/* <IconLink href="https://demo.litequeen.com/" icon={DrumstickIcon} className=" border rounded-md p-8">
-          DEMO
-        </IconLink> */}
-
-				<div className="my-12 flex flex-col gap-10">
-					<DemoButton />
-
-					<DownloadDropdown />
+					<a
+						href="https://demo.litequeen.com"
+						target="_blank"
+						rel="noreferrer"
+						data-umami-event="Demo button"
+						className="flex mt-4 border bg-sky-700 text-gray-200  items-center gap-2  p-2 justify-center w-2/4 mx-auto hover:scale-105 dark:border-gray-900  rounded-lg font-medium "
+					>
+						<DrumstickIcon className="size-5" />
+						<span>Demo</span>
+					</a>
 				</div>
 			</div>
 		</>
 	);
 }
 
-function DemoButton() {
-	return (
-		<div className="flex flex-row  gap-1 justify-center  dark:text-white ">
-			{/* <FeaturesCarousel />
-
-					<IconSlash className="dark:text-white self-center size-4" /> */}
-
-			<Link
-				href="https://demo.litequeen.com"
-				data-umami-event="Demo button"
-				className=" flex w-40 py-1 px-2 border-black dark:border-white border rounded-lg  gap-1 items-center font-medium justify-center hover:scale-105 hover:text-landing-accent-light"
-			>
-				<DrumstickIcon className="size-4" />
-				<span>Demo</span>
-			</Link>
-		</div>
-	);
-}
-
 export function IntroFooter() {
 	return (
 		<p className="flex items-baseline  gap-x-2 text-[0.8125rem]/6 text-gray-500">
+			<IconLink href="/guides" icon={BookIcon} className="flex-none">
+				Guides
+			</IconLink>
+			<span>/</span>
+
 			<IconLink href="/faq" icon={FaqIcon} className="flex-none">
 				FAQ
 			</IconLink>
 			<span>/</span>
 			<IconLink
-				href="https://github.com/kivS/lite-queen/issues"
+				href="https://github.com/kivS/lite-queen/discussions/new?category=q-a"
 				icon={SupportIcon}
 				data-umami-event="Support link"
 				className="flex-none"
+				external
 			>
 				Support
 			</IconLink>
-			<span>/</span>
+			{/* <span>/</span>
 			<IconLink
 				data-umami-event="RSS link"
 				href="/feed.xml"
@@ -125,7 +105,7 @@ export function IntroFooter() {
 				className="flex-none"
 			>
 				RSS
-			</IconLink>
+			</IconLink> */}
 			<span>/</span>
 			<IconLink
 				href="https://twitter.com/kivsegrob"
@@ -133,9 +113,9 @@ export function IntroFooter() {
 				className="text-xs "
 				icon={XIcon}
 				iconClassName="size-3 self-baseline"
-			>
-				<span className="hidden sm:block ">By Vik</span>
-			</IconLink>
+				title="Created by Vik"
+				external
+			/>
 		</p>
 	);
 }
@@ -188,13 +168,13 @@ function FaqIcon(props) {
 	);
 }
 
-function BookIcon(props) {
-	return (
-		<svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor" {...props}>
-			<path d="M7 3.41a1 1 0 0 0-.668-.943L2.275 1.039a.987.987 0 0 0-.877.166c-.25.192-.398.493-.398.812V12.2c0 .454.296.853.725.977l3.948 1.365A1 1 0 0 0 7 13.596V3.41ZM9 13.596a1 1 0 0 0 1.327.946l3.948-1.365c.429-.124.725-.523.725-.977V2.017c0-.32-.147-.62-.398-.812a.987.987 0 0 0-.877-.166L9.668 2.467A1 1 0 0 0 9 3.41v10.186Z" />
-		</svg>
-	);
-}
+// function BookIcon(props) {
+// 	return (
+// 		<svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor" {...props}>
+// 			<path d="M7 3.41a1 1 0 0 0-.668-.943L2.275 1.039a.987.987 0 0 0-.877.166c-.25.192-.398.493-.398.812V12.2c0 .454.296.853.725.977l3.948 1.365A1 1 0 0 0 7 13.596V3.41ZM9 13.596a1 1 0 0 0 1.327.946l3.948-1.365c.429-.124.725-.523.725-.977V2.017c0-.32-.147-.62-.398-.812a.987.987 0 0 0-.877-.166L9.668 2.467A1 1 0 0 0 9 3.41v10.186Z" />
+// 		</svg>
+// 	);
+// }
 
 export function GitHubIcon(props) {
 	return (

@@ -13,7 +13,7 @@ export const metadata = {
 export default function GuidesLayout({ children }) {
 	return (
 		<main>
-			<nav className="max-w-screen-2xl mx-auto flex gap-4 items-center place-content-between mt-2  font-medium">
+			<nav className="max-w-screen-2xl mx-auto flex gap-4 items-center place-content-between my-4  font-medium">
 				<Link href="/" className="ml-6">
 					<Logo className="size-10" />
 				</Link>

@@ -104,10 +104,10 @@ function FixedSidebar({ main, footer }) {
 export function Layout({ children }) {
 	return (
 		<>
-			<Script
+			{/* <Script
 				src="https://platform.twitter.com/widgets.js"
 				strategy="afterInteractive"
-			/>
+			/> */}
 			<FixedSidebar main={<Intro />} footer={<IntroFooter />} />
 			<div className="absolute top-4 right-4 z-50">
 				<ThemeToggle className="" />

@@ -14,7 +14,7 @@ DATE=$(date +%Y-%m-%d)
 
 if [ "$(git rev-parse --abbrev-ref HEAD)" != "main" ]; then
     echo " ❌ Not on the main branch. Skipping..."
-    exit 1
+    exit 0
 fi
 
 

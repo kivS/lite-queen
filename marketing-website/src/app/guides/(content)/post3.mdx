@@ -1,19 +1,13 @@
-export { GuideLayout as default } from "@/app/guides/guide-layout"
+import {Image} from "@/components/image"
 
-export const title = "How to manage SQLite databases on a Linux server with Coolify and Lite Queen"
-
-export const metadata = {
-  title: `${title} | Lite Queen Guides`,
-  description: `Lite Queen Guide About ${title}`
-}
-
-# {title}
 
 
 In this guide we're going to manage SQLite databases on our VPS by hosting Lite Queen with [Coolify](https://coolify.io/). What is Coolify you ask?
 
 > Coolify is an all-in one PaaS that helps you to self-host your own applications, databases or services (like Wordpress, Plausible Analytics, Ghost) without managing your servers, also known as an open-source & self-hostable Heroku / Netlify / Vercel alternative.
 
+{/* TODO: update the date once Coolify has released the update with Lite Queen added */}
+**Update: As of Oct X 2024 you can now add Lite Queen with one click in your server with Coolify.**
 
 
 1. First off, we need to deal with [installing and setting up our Coolify instance in our VPS](https://coolify.io/docs/introduction).
@@ -40,13 +34,19 @@ In this guide we're going to manage SQLite databases on our VPS by hosting Lite 
 4. Let's add a domain and connect it to our Lite Queen container
 
     - You can set the domain by going to the `Settings` in the service: 
-
-      ![](./images/add-domain-settings.webp)
+    
+      <Image src="https://media-files-go-brrr-project.kiv-d-dev.workers.dev/i/nhlp8w18l262nj4o78n2v8iywsbc"/>
 
     - Let's map our domain to the port 8000 in the Lite Queen container(port used by default). This is done by putting the domain, followed by a semicolon and then the port 8000.
-      ![](./images/domain-name.webp)
+    
+      <Image src="https://media-files-go-brrr-project.kiv-d-dev.workers.dev/i/5x3sz2lntqz18qfyswgtojlfdl1k"/>
+     
+
+
 
 
 5. After saving and reloading the configuration(*Pull Latest Images & Restart* button), you should be able to see the initial screen of Lite Queen. Happy Hosting!
-
-    ![](./images/success.webp)
+  
+  <Image src="https://media-files-go-brrr-project.kiv-d-dev.workers.dev/i/6wv7b4dieid1mvrcnlj4810jye8a"/>
+  
+  
