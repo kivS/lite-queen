@@ -206,7 +206,7 @@ export default function GodMode() {
 						</thead>
 						<tbody className="">
 							{data?.backups?.map((backup) => (
-								<tr key={backup.timestamp}>
+								<tr key={backup.file_name}>
 									<td className="border border-gray-300 p-2 text-xs text-center">
 										{new Date(backup.timestamp).toLocaleString()}
 									</td>
