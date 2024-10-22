@@ -20,6 +20,7 @@ import {
 	CommandIcon,
 	DatabaseBackupIcon,
 	DatabaseIcon,
+	DownloadIcon,
 	FanIcon,
 	FilePlus2Icon,
 	FilePlusIcon,
@@ -205,12 +206,21 @@ export default function GodMode() {
 						</thead>
 						<tbody className="">
 							{data?.backups?.map((backup) => (
-								<tr key={backup.timestamp}>
+								<tr key={backup.file_name}>
 									<td className="border border-gray-300 p-2 text-xs text-center">
 										{new Date(backup.timestamp).toLocaleString()}
 									</td>
 									<td className="border border-gray-300 p-2 text-xs text-center">
 										{backup.file_name}
+									</td>
+									<td className="border border-gray-300 text-xs text-center">
+										<a
+											href={`${ROOT_URL}/api/download-backup?db_id=${db_id}&file_name=${backup.file_name}`}
+											download
+											className="flex justify-center w-full"
+										>
+											<DownloadIcon />
+										</a>
 									</td>
 								</tr>
 							))}

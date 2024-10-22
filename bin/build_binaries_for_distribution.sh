@@ -3,13 +3,6 @@ echo "Running script: $(basename "$0")"
 
 DATE=$(date +%Y-%m-%d)
 
-
-
-if [ "$(git rev-parse --abbrev-ref HEAD)" != "main" ]; then
-    echo " ❌ Not on the main branch. Skipping..."
-    exit 0
-fi
-
 cd _ui/
 
 
