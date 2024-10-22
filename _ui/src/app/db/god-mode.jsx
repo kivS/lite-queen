@@ -20,6 +20,7 @@ import {
 	CommandIcon,
 	DatabaseBackupIcon,
 	DatabaseIcon,
+	DownloadIcon,
 	FanIcon,
 	FilePlus2Icon,
 	FilePlusIcon,
@@ -211,6 +212,15 @@ export default function GodMode() {
 									</td>
 									<td className="border border-gray-300 p-2 text-xs text-center">
 										{backup.file_name}
+									</td>
+									<td className="border border-gray-300 text-xs text-center">
+										<a
+											href={`${ROOT_URL}/api/download-backup?db_id=${db_id}&file_name=${backup.file_name}`}
+											download
+											className="flex justify-center w-full"
+										>
+											<DownloadIcon />
+										</a>
 									</td>
 								</tr>
 							))}

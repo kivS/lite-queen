@@ -521,6 +521,47 @@ const server = Bun.serve({
 			);
 		}
 
+		if (req.method === "GET" && url.pathname === "/api/download-backup") {
+			const db_id = url.searchParams.get("db_id") || "";
+			const backup_file_name = url.searchParams.get("file_name") || "";
+
+			if (!shortTermMemory.databases[db_id]) {
+				return Response.json(
+					{ ok: false, message: "Database not found in memory" },
+					{ status: 404, headers: { ...defaultHeaders } },
+				);
+			}
+
+			const backups = shortTermMemory.databases[db_id]?.backups || [];
+			const backup = backups.find((b) => b.file_name === backup_file_name);
+
+			if (!backup) {
+				return Response.json(
+					{ ok: false, message: "Backup file not found" },
+					{ status: 404, headers: { ...defaultHeaders } },
+				);
+			}
+
+			const file = Bun.file(backup.file_location);
+
+			const fileExists = await file.exists();
+
+			if (!fileExists) {
+				return Response.json(
+					{ ok: false, message: "Backup file does not exist on server" },
+					{ status: 404, headers: { ...defaultHeaders } },
+				);
+			}
+
+			return new Response(file.stream(), {
+				headers: {
+					"Content-Type": "application/octet-stream",
+					"Content-Disposition": `attachment; filename="${shortTermMemory.databases[db_id]?.db_alias.toLowerCase()}_${backup_file_name}"`,
+					...defaultHeaders,
+				},
+			});
+		}
+
 		// =========================
 
 		if (req.method === "GET" && url.pathname === "/api/get-table-info") {
