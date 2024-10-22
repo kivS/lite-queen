@@ -556,7 +556,7 @@ const server = Bun.serve({
 			return new Response(file.stream(), {
 				headers: {
 					"Content-Type": "application/octet-stream",
-					"Content-Disposition": `attachment; filename="${shortTermMemory.databases[db_id]?.db_alias.toLowerCase()}_${backup_file_name}"`,
+					"Content-Disposition": `attachment; filename="${shortTermMemory.databases[db_id]?.db_filename.toLowerCase()}_${backup_file_name}"`,
 					...defaultHeaders,
 				},
 			});
