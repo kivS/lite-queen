@@ -60,7 +60,6 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useGlobal } from "../global-context";
 import { mutate } from "swr";
 import { MultiSelect } from "@/components/multi-select";
-import { Cat, Dog, Fish, Rabbit, Turtle } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function GodMode() {
