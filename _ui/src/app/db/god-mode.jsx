@@ -296,6 +296,7 @@ export default function GodMode() {
 							}
 							onValueChange={setSelectedColumns}
 							defaultValue={selectedColumns}
+							modalPopover={true} // https://github.com/sersavan/shadcn-multi-select-component/issues/27#issuecomment-2398721574
 							placeholder="Select columns to search by"
 							// variant="inverted"
 							animation={0}
