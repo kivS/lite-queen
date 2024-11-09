@@ -6,8 +6,7 @@ declare -a dbs=(
     # file name and file path inside of container
     "simplefolks.sqlite /app/databases/simplefolks.sqlite"
     "travelbuddy.db /app/databases/travelbuddy.db"
-    "peninsula_publicpay.sqlite /app/databases/peninsula_publicpay.sqlite"
-    # "census2000names /app/databases/census2000names.sqlite"
+    "census2000names /app/databases/census2000names.sqlite"
     # Add more databases here
 )
 for db_entry in "${dbs[@]}"; do
