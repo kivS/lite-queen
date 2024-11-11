@@ -1,5 +1,29 @@
 import {Image} from "@/components/image"
 
+As of [Coolify](https://coolify.io/) `v4.0.0-beta.361`, Lite Queen is included as a service and be installed with one click.
 
+We can start by creating a new Resource and search for Litequeen:
 
-- Hello
+    <Image src="https://media-files-go-brrr-project.kiv-d-dev.workers.dev/i/2sfdik2msk4rndxohk9zlfagfaf6"/>
+
+After that, we need to press on `Edit Docker Compose` and let Lite Queen know where your SQLite projects are located in your server filesystem
+
+    <Image src="https://media-files-go-brrr-project.kiv-d-dev.workers.dev/i/hfgepdxmbyn5xxj4v1inv8liy8hh" alt="Image" />
+
+For example, in my server I keep my project's files in `/home/hellouser/www` so let's map that into `/www` inside the Coolify container:
+
+```yaml
+ -
+    type: bind
+    source: /home/hellouser/www
+    target: /www
+    is_directory: true
+```
+
+This way if I have a SQLite database in `/home/hellouser/www/project1/storage/production.sqlite3`, in the Lite Queen application we can add the database by using `/www/project1/storage/production.sqlite3`.
+
+    <Image src="https://media-files-go-brrr-project.kiv-d-dev.workers.dev/i/bavsaud59cogd6t7miw0c0r7gnc1" alt="Image" />
+
+That's all you need, go ahead and deploy Lite Queen!
+
+    
