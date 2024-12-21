@@ -4,7 +4,8 @@ import { Feed } from "feed";
 
 export async function GET(req) {
 	let siteUrl = "https://litequeen.com";
-	let rssSourceUrl = process.env.NEXT_PUBLIC_SITE_URL;
+	// let rssSourceUrl = process.env.NEXT_PUBLIC_SITE_URL;
+	let rssSourceUrl = "https://litequeen.com";
 
 	if (!siteUrl) {
 		throw Error("Missing NEXT_PUBLIC_SITE_URL environment variable");

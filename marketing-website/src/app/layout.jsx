@@ -23,7 +23,7 @@ export const metadata = {
 			"application/rss+xml": "https://litequeen.com/feed.xml",
 		},
 	},
-	metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
+	metadataBase: new URL("https://litequeen.com"),
 };
 
 export default function RootLayout({ children }) {
