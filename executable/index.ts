@@ -125,6 +125,13 @@ const server = Bun.serve({
 			});
 		}
 
+		if (req.method === "GET" && url.pathname === "/up") {
+			return Response.json(
+				{ status: "ok" },
+				{ headers: { ...defaultHeaders } },
+			);
+		}
+
 		if (req.method === "GET" && url.pathname === "/api/get-loaded-databases") {
 			return Response.json(
 				{ databases: shortTermMemory.databases },
