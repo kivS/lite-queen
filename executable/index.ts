@@ -4,7 +4,6 @@ import { parseArgs } from "node:util";
 import { randomUUID } from "node:crypto";
 import { $ } from "bun";
 import { mkdir } from "node:fs/promises";
-import path from "node:path";
 
 const IS_DEV_MODE = process.env.IS_DEV === "true";
 
