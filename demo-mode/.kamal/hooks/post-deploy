@@ -11,4 +11,8 @@
 # KAMAL_DESTINATION (if set)
 # KAMAL_RUNTIME
 
+kamal app exec  --reuse "bash" "/app/bin/seed-dummy-dbs.sh"
+
+
 echo "$KAMAL_PERFORMER deployed $KAMAL_VERSION to $KAMAL_DESTINATION in $KAMAL_RUNTIME seconds"
+
