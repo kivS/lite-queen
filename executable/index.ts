@@ -68,8 +68,6 @@ Options:
 	process.exit(0);
 }
 
-console.log({ flags });
-
 process.on("SIGINT", async () => {
 	console.log("\nSIGINT! Lite Queen shutting down...");
 
@@ -1112,8 +1110,6 @@ const server = Bun.serve({
 		}
 
 		if (req.method === "GET" && url.pathname === "/api/get-build-info") {
-			console.log({ shortTermMemory });
-
 			const build_date = process.env.BUILD_DATE;
 
 			return json_response({
@@ -1162,19 +1158,19 @@ const server = Bun.serve({
 
 if (process.env.BUILD_DATE) {
 	const build_date = process.env.BUILD_DATE;
-	console.log(`\n[ Latest update on ${build_date} ]`);
+	console.debug(`\n[ Latest update on ${build_date} ]`);
 }
 
 if (IS_DEV_MODE) {
 	console.log("\n[ Running in dev mode ]");
 }
 
-console.log(`\n[ Lite Queen running on ${server.url.href} ]`);
+console.debug(`\n[ Lite Queen running on ${server.url.href} ]`);
 
 //****************************************************************************************
 
 async function saveToLongTermMemory(shortTermMemory, data_dir: string) {
-	console.log("Storing data to longTermMemory...");
+	console.debug("Storing data to longTermMemory...");
 
 	try {
 		const jsonResponse = JSON.stringify(shortTermMemory);
