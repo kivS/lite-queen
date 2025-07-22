@@ -22,10 +22,10 @@ export default async function sitemap() {
 			priority: 1,
 		},
 		{
-			url: "https://litequeen.com/?show-buy-card=true",
+			url: "https://solid.litequeen.com/",
 			lastModified: new Date(),
 			changeFrequency: "daily",
-			priority: 1,
+			priority: 2,
 		},
 		{
 			url: "https://litequeen.com/guides/",
