@@ -113,11 +113,20 @@ export function Layout({ children }) {
 				<ThemeToggle className="" />
 			</div>
 
-			<ul className="flex  mr-14 z-50 mt-4 text-sm p-[2px] justify-end">
+			<ul className="flex gap-4  mr-14 z-50 mt-4 text-sm p-[2px] justify-end">
+				<li>
+					<Link
+						href="https://solid.litequeen.com/"
+						className="hover:underline items-center mr-8 hover:text-landing-accent-light flex gap-2"
+					>
+						
+						Ruby on Rails version
+					</Link>
+				</li>
 				<li>
 					<Link
 						href="/guides"
-						className="hover:underline items-center hover:text-landing-accent-light flex gap-2"
+						className="hover:underline items-center hover:text-landing-accent-light flex gap-0.5"
 					>
 						<BookIcon className="size-4" />
 						Guides
