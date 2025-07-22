@@ -25,7 +25,7 @@ export default async function sitemap() {
 			url: "https://solid.litequeen.com/",
 			lastModified: new Date(),
 			changeFrequency: "daily",
-			priority: 2,
+			priority: 1,
 		},
 		{
 			url: "https://litequeen.com/guides/",
